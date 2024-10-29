@@ -1,0 +1,137 @@
+---
+title: "ProjectHCI"
+author: "Christopher Abie Diaz Doviano / 00000067692"
+date: "2023-05-29"
+output:
+pdf_document
+ fig_height: 4.5
+    fig_width: 6
+    highlight: tango
+    number_sections: yes
+    toc_depth: 4
+  html_document:
+    number_sections: yes
+  word_document:
+    toc_depth: '4'
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(OutDec = ",")
+library(readxl)
+```
+
+------------------------------------------------------------------------
+
+| Topik     | Statistika Nonparametrik untuk 2 Populasi |
+|-----------|-------------------------------------------|
+| Pertemuan | 12                                        |
+| Nama      | Christopher Abie Diaz Doviano             |
+| Kelas     | IS240-ALBL Probability and Statistic      |
+| NIM       | 00000067692                               |
+| Tanggal   | 2023-05-16                                |
+| Waktu     | maks 100 menit                            |
+
+------------------------------------------------------------------------
+
+## Project HCI
+
+```{r cars}
+library(readxl)
+library(nortest)
+library(stats)
+library(dplyr)
+library(ggplot2)
+library(lmtest)
+
+set.seed(123)
+
+# Data Diri: Umur
+umur <- sample(18:22, 74, replace = TRUE, prob = c(0.05, 0.4, 0.45, 0.05, 0.05))
+
+# Poin 1: Penggunaan media sosial
+media_sosial <- sample(1:8, 74, replace = TRUE, prob = c(0.05, 0.1, 0.15, 0.2, 0.25, 0.15, 0.05, 0.05))
+
+# Poin 2: Ketertarikan pengguna
+ketertarikan <- sample(1:5, 74, replace = TRUE, prob = c(0.1, 0.4, 0.4, 0.05, 0.05))
+
+# Poin 3: fitur dasar
+fitur_dasar <- sample(1:5, 74, replace = TRUE, prob = c(0.1, 0.1, 0.2, 0.6, 0.1))
+
+# poin 4: Pilihan fitur menarik
+fitur_menarik <- sample(c("User Favorite", "User Community", "Rekomendasi", "Pick and Pay", "Lokasi", "Customize Drink", "Scan QR", "Loyalty Point", "Menu Rating"), 74, replace = TRUE, prob = c(0.20, 0.20, 0.15, 0.15, 0.10, 0.05, 0.025, 0.025, 0.025))
+
+# Poin 5: Fitur penting
+fitur_penting <- sample(1:5, 74, replace = TRUE, prob = c(0.05, 0.2, 0.3, 0.35, 0.1))
+
+# Poin 6: Tingkat kenyamanan pengguna
+kenyamanan <- sample(1:5, 74, replace = TRUE, prob = c(0.1, 0.2, 0.3, 0.15, 0.25))
+
+# Poin 7: Pilihan fitur komunitas
+fitur_komunitas <- sample(c("Ulasan kopi", "Resep minuman kopi", "Tips dan trik menyeduh kopi", "Event atau pertemuan komunitas", "Diskusi topik terkait kopi"), 74, replace = TRUE, prob = c(0.35, 0.1, 0.05, 0.35, 0.15))
+
+# Poin 8: Integrasi aplikasi
+kepuasan <- sample(1:5, 74, replace = TRUE, prob = c(0.05, 0.1, 0.3, 0.4, 0.15))
+
+
+# Menggabungkan semua poin menjadi dataset "data"
+data <- data.frame(umur, media_sosial, ketertarikan, fitur_dasar, fitur_menarik, fitur_penting, kenyamanan, fitur_komunitas, kepuasan)
+
+str(data)
+head(data)
+tail(data)
+print(data)
+view(data)
+
+shapiro.test(data$umur)
+summary(data$umur)
+sd(data$umur)
+plot(density(data$umur))
+
+shapiro.test(data$media_sosial)
+summary(data$media_sosial)
+sd(data$media_sosial)
+plot(density(data$media_sosial))
+
+shapiro.test(data$ketertarikan)
+summary(data$ketertarikan)
+sd(data$ketertarikan)
+t.test(data$ketertarikan)
+plot(density(data$ketertarikan))
+
+shapiro.test(data$fitur_dasar)
+summary(data$fitur_dasar)
+sd(data$fitur_dasar)
+t.test(data$fitur_dasar)
+plot(density(data$fitur_dasar))
+
+fitur_menarik <- table(data$fitur_menarik)
+print(fitur_menarik)
+fitur_m_terbanyak <- names(fitur_menarik)[which.max(fitur_menarik)]
+print(fitur_m_terbanyak)
+(chisq.test(data$fitur_menarik, data$media_sosial))
+
+shapiro.test(data$fitur_penting)
+summary(data$fitur_penting)
+sd(data$fitur_penting)
+t.test(data$fitur_penting)
+plot(density(data$fitur_penting))
+
+shapiro.test(data$kenyamanan)
+summary(data$kenyamanan)
+sd(data$kenyamanan)
+t.test(data$kenyamanan)
+plot(density(data$kenyamanan))
+
+fitur_komunitas <- table(data$fitur_komunitas)
+print(fitur_komunitas)
+fitur_k_terbanyak <- names(fitur_komunitas)[which.max(fitur_komunitas)]
+print(fitur_k_terbanyak)
+(chisq.test(data$fitur_komunitas, data$media_sosial))
+
+shapiro.test(data$kepuasan)
+summary(data$kepuasan)
+sd(data$kepuasan)
+t.test(data$kepuasan)
+plot(density(data$kepuasan))
+```
