@@ -1,6 +1,6 @@
 ---
 title: "ProjectHCI"
-author: "Christopher Abie Diaz Doviano / 00000067692"
+author: "Ray Anthony Pranoto / 00000066655"
 date: "2023-05-29"
 output:
 pdf_document
@@ -25,10 +25,10 @@ library(readxl)
 
 | Topik     | Statistika Nonparametrik untuk 2 Populasi |
 |-----------|-------------------------------------------|
-| Pertemuan | 12                                        |
-| Nama      | Christopher Abie Diaz Doviano             |
+| Pertemuan | Project                                   |
+| Nama      | Ray Anthony Pranoto                       |
 | Kelas     | IS240-ALBL Probability and Statistic      |
-| NIM       | 00000067692                               |
+| NIM       | 00000066655                               |
 | Tanggal   | 2023-05-16                                |
 | Waktu     | maks 100 menit                            |
 
